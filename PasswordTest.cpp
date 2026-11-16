@@ -120,3 +120,10 @@ TEST(PasswordTest, every_character_type_case)
 	ASSERT_EQ(true, actual);
 }
 
+TEST(PasswordTest, all_lower_last_upper_case)
+{
+	Password my_password;
+	int actual = my_password.has_mixed_case("lowerU");
+	ASSERT_EQ(true, actual);
+}
+
