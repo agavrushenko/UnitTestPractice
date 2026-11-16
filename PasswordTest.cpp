@@ -64,24 +64,59 @@ TEST(PasswordTest, unicode_leading_characters)
 	ASSERT_EQ(5, actual);
 }
 
-TEST(PasswordTest, all_lowercase_characters)
+TEST(PasswordTest, all_lower_case)
 {
 	Password my_password;
 	int actual = my_password.has_mixed_case("aaaabbbbbccccc");
 	ASSERT_EQ(false, actual);
 }
 
-TEST(PasswordTest, all_uppercase_characters)
+TEST(PasswordTest, all_upper_case)
 {
 	Password my_password;
 	int actual = my_password.has_mixed_case("DEFGHIJK");
 	ASSERT_EQ(false, actual);
 }
 
-TEST(PasswordTest, mixed_case_characters)
+TEST(PasswordTest, mixed_case)
 {
 	Password my_password;
 	int actual = my_password.has_mixed_case("AbCdEfGHIjkl");
+	ASSERT_EQ(true, actual);
+}
+
+TEST(PasswordTest, all_number_case)
+{
+	Password my_password;
+	int actual = my_password.has_mixed_case("123455578");
+	ASSERT_EQ(false, actual);
+}
+
+TEST(PasswordTest, numbers_and_lower_case)
+{
+	Password my_password;
+	int actual = my_password.has_mixed_case("12abc2445");
+	ASSERT_EQ(false, actual);
+}
+
+TEST(PasswordTest, numbers_lower_and_special_case)
+{
+	Password my_password;
+	int actual = my_password.has_mixed_case("123abc!@#{}>?");
+	ASSERT_EQ(false, actual);
+}
+
+TEST(PasswordTest, unicode_and_lower_case)
+{
+	Password my_password;
+	int actual = my_password.has_mixed_case("θθθθθunicode");
+	ASSERT_EQ(false, actual);
+}
+
+TEST(PasswordTest, every_character_type_case)
+{
+	Password my_password;
+	int actual = my_password.has_mixed_case("θθθθθunicodeANDupperAND!@#$():");
 	ASSERT_EQ(true, actual);
 }
 
