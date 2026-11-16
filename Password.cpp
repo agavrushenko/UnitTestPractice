@@ -1,5 +1,6 @@
 #include "Password.h"
 #include <string>
+#include <cctype>
 
 using std::string;
 
@@ -24,5 +25,18 @@ int Password::count_leading_characters(string phrase){
   letter and at least one lower-case letter
 */
 bool Password::has_mixed_case(string pass){
+  bool lower = false;
+  bool upper = false;
+
+  for (int index = 0; index < pass.length()-1; index++) {
+    if (std::isupper(static_cast<unsigned char>(pass[index]))) {
+      upper = true;
+    } else if (std::islower(static_cast<unsigned char>(pass[index]))) {
+      lower = true;
+    }
+
+    if (lower && upper) return true;
+  }
+
   return false;
 }
