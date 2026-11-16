@@ -28,7 +28,7 @@ bool Password::has_mixed_case(string pass){
   bool lower = false;
   bool upper = false;
 
-  for (int index = 0; index < pass.length()-1; index++) {
+  for (int index = 0; index < pass.length(); index++) {
     if (std::isupper(static_cast<unsigned char>(pass[index]))) {
       upper = true;
     } else if (std::islower(static_cast<unsigned char>(pass[index]))) {
