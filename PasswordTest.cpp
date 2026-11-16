@@ -63,3 +63,25 @@ TEST(PasswordTest, unicode_leading_characters)
 	int actual = my_password.count_leading_characters("θθθθθunicode");
 	ASSERT_EQ(5, actual);
 }
+
+TEST(PasswordTest, all_lowercase_characters)
+{
+	Password my_password;
+	int actual = my_password.has_mixed_case("aaaabbbbbccccc");
+	ASSERT_EQ(false, actual);
+}
+
+TEST(PasswordTest, all_uppercase_characters)
+{
+	Password my_password;
+	int actual = my_password.has_mixed_case("DEFGHIJK");
+	ASSERT_EQ(false, actual);
+}
+
+TEST(PasswordTest, mixed_case_characters)
+{
+	Password my_password;
+	int actual = my_password.has_mixed_case("AbCdEfGHIjkl");
+	ASSERT_EQ(true, actual);
+}
+
